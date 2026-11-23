@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ट्रॅक्टरचा पैसा</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#eef5ec;
+  color:#193b24;
+}
+header{
+  background:#205c35;
+  color:white;
+  padding:22px;
+  text-align:center;
+}
+header h1{margin:0;font-size:27px}
+header p{margin:8px 0 0}
+.container{padding:18px;max-width:500px;margin:auto}
+.card{
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 3px 12px #0001;
+  margin-bottom:15px;
+}
+input,button{
+  width:100%;
+  padding:14px;
+  margin-top:12px;
+  border-radius:10px;
+  font-size:16px;
+}
+input{border:1px solid #ccc}
+button{
+  border:none;
+  background:#27723e;
+  color:white;
+  font-weight:bold;
+}
+.secondary{background:#e6f0e4;color:#245c35}
+.hidden{display:none}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.tile{
+  background:white;
+  border-radius:16px;
+  padding:20px 12px;
+  text-align:center;
+  box-shadow:0 2px 8px #0001;
+}
+.tile span{font-size:28px}
+.tile b{display:block;margin-top:10px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚜 ट्रॅक्टरचा पैसा</h1>
+  <p>भाडे • शेती मोजणी • जमा • बाकी</p>
+</header>
+
+<div class="container">
+
+  <!-- Login -->
+  <section id="login" class="card">
+    <h2>🔐 लॉगिन</h2>
+    <input id="mobile" type="tel" maxlength="10"
+      placeholder="मोबाईल नंबर">
+    <input id="password" type="password"
+      placeholder="पासवर्ड">
+    <button onclick="demoLogin()">लॉगिन</button>
+    <button class="secondary" onclick="showRegister()">
+      नवीन खाते तयार करा
+    </button>
+    <p style="font-size:12px;color:#777">
+      ही प्राथमिक Demo स्क्रीन आहे.
+    </p>
+  </section>
+
+  <!-- Register -->
+  <section id="register" class="card hidden">
+    <h2>📝 नवीन खाते</h2>
+    <input id="newName" placeholder="तुमचे नाव">
+    <input id="newMobile" type="tel" maxlength="10"
+      placeholder="मोबाईल नंबर">
+    <input id="newPassword" type="password"
+      placeholder="पासवर्ड तयार करा">
+    <button onclick="showLogin()">नोंदणी</button>
+    <button class="secondary" onclick="showLogin()">मागे</button>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="dashboard" class="hidden">
+    <div class="card">
+      <h2>नमस्कार 👋</h2>
+      <p>तुमच्या ट्रॅक्टरचा हिशोब येथे व्यवस्थापित करा.</p>
+    </div>
+
+    <div class="grid">
+      <div class="tile">
+        <span>🚜</span>
+        <b>भाडे हिशोब</b>
+      </div>
+      <div class="tile">
+        <span>📍</span>
+        <b>GPS रान मोजणी</b>
+      </div>
+      <div class="tile">
+        <span>💰</span>
+        <b>जमा रक्कम</b>
+      </div>
+      <div class="tile">
+        <span>📒</span>
+        <b>बाकी हिशोब</b>
+      </div>
+      <div class="tile">
+        <span>⛽</span>
+        <b>खर्च</b>
+      </div>
+      <div class="tile">
+        <span>📊</span>
+        <b>रिपोर्ट</b>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:15px">
+      <button onclick="showLogin()">बाहेर पडा</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+function showRegister(){
+  login.classList.add("hidden");
+  register.classList.remove("hidden");
+}
+function showLogin(){
+  register.classList.add("hidden");
+  dashboard.classList.add("hidden");
+  login.classList.remove("hidden");
+}
+function demoLogin(){
+  if(mobile.value.length!==10){
+    alert("10 अंकी मोबाईल नंबर टाका");
+    return;
+  }
+  if(password.value.length<1){
+    alert("पासवर्ड टाका");
+    return;
+  }
+  login.classList.add("hidden");
+  register.classList.add("hidden");
+  dashboard.classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
