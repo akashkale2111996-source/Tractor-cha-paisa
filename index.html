@@ -3,167 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#205c35">
 <title>ट्रॅक्टरचा पैसा</title>
-
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#eef5ec;
-  color:#193b24;
-}
-header{
-  background:#205c35;
-  color:white;
-  padding:22px;
-  text-align:center;
-}
-header h1{margin:0;font-size:27px}
-header p{margin:8px 0 0}
-.container{padding:18px;max-width:500px;margin:auto}
-.card{
-  background:white;
-  padding:20px;
-  border-radius:18px;
-  box-shadow:0 3px 12px #0001;
-  margin-bottom:15px;
-}
-input,button{
-  width:100%;
-  padding:14px;
-  margin-top:12px;
-  border-radius:10px;
-  font-size:16px;
-}
-input{border:1px solid #ccc}
-button{
-  border:none;
-  background:#27723e;
-  color:white;
-  font-weight:bold;
-}
-.secondary{background:#e6f0e4;color:#245c35}
-.hidden{display:none}
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-.tile{
-  background:white;
-  border-radius:16px;
-  padding:20px 12px;
-  text-align:center;
-  box-shadow:0 2px 8px #0001;
-}
-.tile span{font-size:28px}
-.tile b{display:block;margin-top:10px}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef5ec;color:#193b24}
+header{background:#205c35;color:#fff;padding:22px 16px;text-align:center}header h1{margin:0;font-size:27px}header p{margin:8px 0 0}
+.container{padding:16px;max-width:600px;margin:auto}.card{background:#fff;padding:20px;border-radius:18px;box-shadow:0 3px 12px #0001;margin-bottom:15px}
+input,select,button{width:100%;padding:14px;margin-top:12px;border-radius:10px;font-size:16px}
+input,select{border:1px solid #ccc;background:white;color:#193b24}button{border:0;background:#27723e;color:white;font-weight:bold;cursor:pointer}.secondary{background:#e6f0e4;color:#245c35}.hidden{display:none!important}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tile{background:white;border-radius:16px;padding:20px 12px;text-align:center;box-shadow:0 2px 8px #0001;cursor:pointer;min-height:120px;display:flex;flex-direction:column;justify-content:center}.tile span{font-size:28px}.tile b{display:block;margin-top:10px}.tile:active{transform:scale(.98)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.toolbar{display:flex;gap:8px}.toolbar button{flex:1}.saved-item{border:1px solid #d8e4d6;border-radius:12px;padding:12px;margin-top:10px}
+.small{color:#777;font-size:13px}.amount{font-weight:bold;font-size:19px;color:#205c35}
 </style>
 </head>
-
 <body>
-
-<header>
-  <h1>🚜 ट्रॅक्टरचा पैसा</h1>
-  <p>भाडे • शेती मोजणी • जमा • बाकी</p>
-</header>
-
+<header><h1>🚜 ट्रॅक्टरचा पैसा</h1><p>भाडे • शेती मोजणी • जमा • बाकी</p></header>
 <div class="container">
-
-  <!-- Login -->
-  <section id="login" class="card">
-    <h2>🔐 लॉगिन</h2>
-    <input id="mobile" type="tel" maxlength="10"
-      placeholder="मोबाईल नंबर">
-    <input id="password" type="password"
-      placeholder="पासवर्ड">
-    <button onclick="demoLogin()">लॉगिन</button>
-    <button class="secondary" onclick="showRegister()">
-      नवीन खाते तयार करा
-    </button>
-    <p style="font-size:12px;color:#777">
-      ही प्राथमिक Demo स्क्रीन आहे.
-    </p>
-  </section>
-
-  <!-- Register -->
-  <section id="register" class="card hidden">
-    <h2>📝 नवीन खाते</h2>
-    <input id="newName" placeholder="तुमचे नाव">
-    <input id="newMobile" type="tel" maxlength="10"
-      placeholder="मोबाईल नंबर">
-    <input id="newPassword" type="password"
-      placeholder="पासवर्ड तयार करा">
-    <button onclick="showLogin()">नोंदणी</button>
-    <button class="secondary" onclick="showLogin()">मागे</button>
-  </section>
-
-  <!-- Dashboard -->
-  <section id="dashboard" class="hidden">
-    <div class="card">
-      <h2>नमस्कार 👋</h2>
-      <p>तुमच्या ट्रॅक्टरचा हिशोब येथे व्यवस्थापित करा.</p>
-    </div>
-
-    <div class="grid">
-      <div class="tile">
-        <span>🚜</span>
-        <b>भाडे हिशोब</b>
-      </div>
-      <div class="tile">
-        <span>📍</span>
-        <b>GPS रान मोजणी</b>
-      </div>
-      <div class="tile">
-        <span>💰</span>
-        <b>जमा रक्कम</b>
-      </div>
-      <div class="tile">
-        <span>📒</span>
-        <b>बाकी हिशोब</b>
-      </div>
-      <div class="tile">
-        <span>⛽</span>
-        <b>खर्च</b>
-      </div>
-      <div class="tile">
-        <span>📊</span>
-        <b>रिपोर्ट</b>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:15px">
-      <button onclick="showLogin()">बाहेर पडा</button>
-    </div>
-  </section>
-
+<section id="login" class="card">
+<h2>🔐 लॉगिन</h2><input id="mobile" type="tel" maxlength="10" placeholder="मोबाईल नंबर"><input id="password" type="password" placeholder="पासवर्ड">
+<button onclick="demoLogin()">लॉगिन</button><button class="secondary" onclick="showRegister()">नवीन खाते तयार करा</button><p class="small">सध्या Demo लॉगिन आहे.</p></section>
+<section id="register" class="card hidden"><h2>📝 नवीन खाते</h2><input id="newName" placeholder="तुमचे नाव"><input id="newMobile" type="tel" maxlength="10" placeholder="मोबाईल नंबर"><input id="newPassword" type="password" placeholder="पासवर्ड तयार करा"><button onclick="registerDemo()">नोंदणी</button><button class="secondary" onclick="showLogin()">मागे</button></section>
+<section id="dashboard" class="hidden">
+<div class="card"><h2>नमस्कार 👋</h2><p>तुमच्या ट्रॅक्टरचा हिशोब येथे व्यवस्थापित करा.</p></div>
+<div class="grid">
+<div class="tile" onclick="openPage('rentPage')"><span>🚜</span><b>भाडे हिशोब</b></div>
+<div class="tile" onclick="openPage('gpsPage')"><span>📍</span><b>GPS रान मोजणी</b></div>
+<div class="tile" onclick="openPage('collectionPage')"><span>💰</span><b>जमा रक्कम</b></div>
+<div class="tile" onclick="openPage('duesPage')"><span>📒</span><b>बाकी हिशोब</b></div>
+<div class="tile" onclick="openPage('expensesPage')"><span>⛽</span><b>खर्च</b></div>
+<div class="tile" onclick="openPage('reportsPage')"><span>📊</span><b>रिपोर्ट</b></div>
 </div>
-
+<div class="card" style="margin-top:15px"><button class="secondary" onclick="logout()">बाहेर पडा</button></div>
+</section>
+<section id="rentPage" class="card hidden">
+<h2>🚜 भाडे हिशोब</h2><button class="secondary" onclick="backHome()">← मुख्य मेनू</button>
+<input id="custName" placeholder="ग्राहकाचे नाव"><input id="custMobile" type="tel" maxlength="10" placeholder="ग्राहक मोबाईल नंबर">
+<label>क्षेत्र (एकर)</label><div class="row"><input id="acres" type="number" min="0" step="0.01" placeholder="एकर"><input id="guntha" type="number" min="0" max="39" step="1" placeholder="गुंठे"></div>
+<label>भाडे दराचा प्रकार</label><select id="rateType" onchange="calcRent()"><option value="acre">प्रति एकर</option><option value="guntha">प्रति गुंठा</option><option value="custom">एकूण ठरलेले भाडे</option></select>
+<input id="rate" type="number" min="0" step="0.01" placeholder="दर रुपये" oninput="calcRent()">
+<label>एकूण भाडे (ग्राहकाला बदलता येईल)</label><input id="total" type="number" min="0" step="0.01" placeholder="एकूण भाडे" oninput="calcBalance()">
+<input id="advance" type="number" min="0" step="0.01" placeholder="जमा / आगाऊ रक्कम" oninput="calcBalance()">
+<div class="card"><p>बाकी रक्कम</p><div class="amount" id="balance">₹0</div></div>
+<input id="workDate" type="date">
+<input id="notes" placeholder="काम / नोंद (ऐच्छिक)">
+<button onclick="saveRent()">हिशोब सेव्ह करा</button>
+<div id="rentSavedList"></div>
+</section>
+<section id="gpsPage" class="card hidden"><h2>📍 GPS रान मोजणी</h2><button class="secondary" onclick="backHome()">← मुख्य मेनू</button><p>GPS मोजणीचे फीचर पुढील टप्प्यात जोडू.</p></section>
+<section id="collectionPage" class="card hidden"><h2>💰 जमा रक्कम</h2><button class="secondary" onclick="backHome()">← मुख्य मेनू</button><div id="collectionContent"></div></section>
+<section id="duesPage" class="card hidden"><h2>📒 बाकी हिशोब</h2><button class="secondary" onclick="backHome()">← मुख्य मेनू</button><div id="duesContent"></div></section>
+<section id="expensesPage" class="card hidden"><h2>⛽ खर्च</h2><button class="secondary" onclick="backHome()">← मुख्य मेनू</button><p>खर्च नोंद फीचर पुढील टप्प्यात जोडू.</p></section>
+<section id="reportsPage" class="card hidden"><h2>📊 रिपोर्ट</h2><button class="secondary" onclick="backHome()">← मुख्य मेनू</button><div id="reportsContent"></div></section>
+</div>
 <script>
-function showRegister(){
-  login.classList.add("hidden");
-  register.classList.remove("hidden");
-}
-function showLogin(){
-  register.classList.add("hidden");
-  dashboard.classList.add("hidden");
-  login.classList.remove("hidden");
-}
-function demoLogin(){
-  if(mobile.value.length!==10){
-    alert("10 अंकी मोबाईल नंबर टाका");
-    return;
-  }
-  if(password.value.length<1){
-    alert("पासवर्ड टाका");
-    return;
-  }
-  login.classList.add("hidden");
-  register.classList.add("hidden");
-  dashboard.classList.remove("hidden");
-}
+const pages=['login','register','dashboard','rentPage','gpsPage','collectionPage','duesPage','expensesPage','reportsPage'];
+function hideAll(){pages.forEach(id=>document.getElementById(id).classList.add('hidden'))}
+function showRegister(){hideAll();document.getElementById('register').classList.remove('hidden')}
+function showLogin(){hideAll();document.getElementById('login').classList.remove('hidden')}
+function demoLogin(){if(mobile.value.length!==10){alert('10 अंकी मोबाईल नंबर टाका');return}if(!password.value){alert('पासवर्ड टाका');return}sessionStorage.setItem('tc_logged','1');hideAll();dashboard.classList.remove('hidden')}
+function registerDemo(){if(!newName.value.trim()||newMobile.value.length!==10||newPassword.value.length<1){alert('नाव, 10 अंकी मोबाईल नंबर आणि पासवर्ड भरा');return}alert('Demo नोंदणी पूर्ण. आता लॉगिन करा.');showLogin();mobile.value=newMobile.value}
+function logout(){sessionStorage.removeItem('tc_logged');showLogin()}
+function openPage(id){hideAll();document.getElementById(id).classList.remove('hidden');if(id==='collectionPage')renderCollections();if(id==='duesPage')renderDues();if(id==='reportsPage')renderReports();if(id==='rentPage')renderSaved()}
+function backHome(){openPage('dashboard')}
+function getRecords(){try{return JSON.parse(localStorage.getItem('tractor_rent_records')||'[]')}catch(e){return []}}
+function saveRecords(list){localStorage.setItem('tractor_rent_records',JSON.stringify(list))}
+function calcRent(){let a=Number(acres.value||0),g=Number(guntha.value||0),r=Number(rate.value||0),t=rateType.value;let totalCalc=t==='acre'?(a+g/40)*r:t==='guntha'?(a*40+g)*r:Number(total.value||0);if(t!=='custom')total.value=Math.round(totalCalc*100)/100;calcBalance()}
+function calcBalance(){let totalV=Number(total.value||0),adv=Number(advance.value||0);balance.textContent='₹'+Math.max(0,totalV-adv).toFixed(2)}
+function saveRent(){if(!custName.value.trim()){alert('ग्राहकाचे नाव भरा');return}let rec={id:Date.now(),name:custName.value.trim(),mobile:custMobile.value,acres:Number(acres.value||0),guntha:Number(guntha.value||0),rateType:rateType.value,rate:Number(rate.value||0),total:Number(total.value||0),advance:Number(advance.value||0),date:workDate.value,notes:notes.value};let arr=getRecords();arr.unshift(rec);saveRecords(arr);alert('भाडे हिशोब सेव्ह झाला');['custName','custMobile','acres','guntha','rate','total','advance','workDate','notes'].forEach(id=>document.getElementById(id).value='');calcBalance();renderSaved()}
+function renderSaved(){let arr=getRecords();rentSavedList.innerHTML='<h3>सेव्ह केलेले हिशोब</h3>'+arr.slice(0,15).map(r=>`<div class="saved-item"><b>${esc(r.name)}</b> ${r.date||''}<br>क्षेत्र: ${r.acres||0} एकर ${r.guntha||0} गुंठे<br>भाडे: ₹${Number(r.total).toFixed(2)} • जमा: ₹${Number(r.advance).toFixed(2)} • बाकी: ₹${Math.max(0,r.total-r.advance).toFixed(2)}<br>${r.notes?esc(r.notes):''}</div>`).join('')}
+function renderCollections(){let arr=getRecords();collectionContent.innerHTML=arr.map(r=>`<div class="saved-item"><b>${esc(r.name)}</b> — जमा ₹${Number(r.advance).toFixed(2)}</div>`).join('')||'जमा नोंदी नाहीत'}
+function renderCollections(){let arr=getRecords();collectionContent.innerHTML=arr.map(r=>`<div class="saved-item"><b>${esc(r.name)}</b> — जमा ₹${Number(r.advance).toFixed(2)}</div>`).join('')||'जमा नोंदी नाहीत'}
+function renderCollections(){let arr=getRecords();document.getElementById('collectionContent').innerHTML=arr.map(r=>`<div class="saved-item"><b>${esc(r.name)}</b> — जमा ₹${Number(r.advance).toFixed(2)}</div>`).join('')||'जमा नोंदी नाहीत'}
+function renderDues(){let arr=getRecords();document.getElementById('duesContent').innerHTML=arr.filter(r=>r.total>r.advance).map(r=>`<div class="saved-item"><b>${esc(r.name)}</b> — बाकी ₹${(r.total-r.advance).toFixed(2)}</div>`).join('')||'बाकी रक्कम नाही'}
+function renderReports(){let arr=getRecords(),total=arr.reduce((s,r)=>s+Number(r.total||0),0),adv=arr.reduce((s,r)=>s+Number(r.advance||0),0);document.getElementById('reportsContent').innerHTML=`<p>एकूण कामे: <b>${arr.length}</b></p><p>एकूण भाडे: <b>₹${total.toFixed(2)}</b></p><p>एकूण जमा: <b>₹${adv.toFixed(2)}</b></p><p>एकूण बाकी: <b>₹${(total-adv).toFixed(2)}</b></p>`}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+if(sessionStorage.getItem('tc_logged')==='1'){hideAll();dashboard.classList.remove('hidden')}
 </script>
-
-</body>
-</html>
+</body></html>
